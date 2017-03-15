@@ -22,17 +22,25 @@ let mainState = {
         this.score = 0;
         this.labelScore = game.add.text(20, 20, "0",
             { font: "30px Arial", fill: "#ff4d68" });
+        this.bird.anchor.setTo(-0.2, 0.5);
     },
 
     update: function() {
         game.physics.arcade.overlap(
             this.bird, this.obstacles, this.restartGame, null, this);
+        game.physics.arcade.overlap(
+            this.bird, this.obstacles, this.dead, null, this);
+        if (this.bird.angle < 20)
+            this.bird.angle += 1;
         if (this.bird.y < 0 || this.bird.y > 490)
             this.restartGame();
-    },
 
+    },
     jump: function() {
         this.bird.body.velocity.y = -350;
+        game.add.tween(this.bird).to({angle: -20}, 100).start();
+        if (this.bird.alive == false)
+            return;
     },
 
     restartGame: function() {
@@ -59,6 +67,17 @@ let mainState = {
 
         this.score += 1;
         this.labelScore.text = this.score;
+    },
+    dead:function(){
+        if (this.bird.alive == false)
+            return;
+
+        this.bird.alive = false;
+        game.time.events.remove(this.timer);
+
+        this.obstacles.forEach(function(o){
+            o.body.velocity.x = 0;
+        }, this);
     }
 };
 
