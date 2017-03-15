@@ -1,0 +1,19 @@
+{
+  "name": "flappy-birds",
+  "version": "1.0.0",
+  "description": "Basic flappy bird game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cle96/flappy-birds.git"
+  },
+  "author": "Cristian Leahu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cle96/flappy-birds/issues"
+  },
+  "homepage": "https://github.com/cle96/flappy-birds#readme"
+}
